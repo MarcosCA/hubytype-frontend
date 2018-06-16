@@ -657,7 +657,7 @@
     
     function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
     
-    var API_ENDPOINT = "https://hubtype-app.herokuapp.com/search?q=hello";
+    var API_ENDPOINT = "https://hubtype-app.herokuapp.com/search?q=";
     
     exports.handler = (() => {
       var _ref = _asyncToGenerator(function* (event, context) {
@@ -668,8 +668,8 @@
         }).then(function (data) {
           return {
             statusCode: 200,
-            //body: `${JSON.stringify(data)} *Hola*`
-            body: API_ENDPOINT
+            body: JSON.stringify(data)
+            //body: API_ENDPOINT
           };
         }).catch(function (error) {
           return { statusCode: 422, body: String(error) };
