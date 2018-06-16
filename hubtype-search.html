@@ -38,9 +38,8 @@
     $( ".search-button" ).click(function() {
         if ($(".search-box").val() !== ""){
             search($(".search-box").val(), function(err, data){
-                if(data !== ''){
+                if(data !== null){
                     console.log(err);
-                    console.log(data);
                     window.location = data.link;
                 } else{
                     alert('no results found');
