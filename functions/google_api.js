@@ -657,11 +657,10 @@
     
     function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
     
-    var API_ENDPOINT = "https://hubtype-app.herokuapp.com/search?q=";
-    
     exports.handler = (() => {
       var _ref = _asyncToGenerator(function* (event, context) {
-        const queryString = event.queryStringParameters.q;
+        var queryString = event.queryStringParameters.q;
+        var API_ENDPOINT = "https://hubtype-app.herokuapp.com/search?q=";
         API_ENDPOINT = API_ENDPOINT + queryString;
         return (0, _nodeFetch2.default)(API_ENDPOINT).then(function (response) {
           return response.json();
