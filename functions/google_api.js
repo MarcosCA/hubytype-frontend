@@ -657,16 +657,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-const API_ENDPOINT = "https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke";
+var API_ENDPOINT = "https://hubtype-app.herokuapp.com/search?q=";
 
 exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context) {
+    const queryString = event.queryStringParameters.q;
+    API_ENDPOINT = API_ENDPOINT + queryString;
     return (0, _nodeFetch2.default)(API_ENDPOINT).then(function (response) {
       return response.json();
     }).then(function (data) {
       return {
         statusCode: 200,
-        body: `${data.setup} ${data.punchline} *BA DUM TSSS*`
+        body: `${data.link} *BA DUM TSSS*`
       };
     }).catch(function (error) {
       return { statusCode: 422, body: String(error) };
