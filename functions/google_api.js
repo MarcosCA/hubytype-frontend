@@ -668,7 +668,7 @@
         }).then(function (data) {
           return {
             statusCode: 200,
-            body: `${JSON.stringify(data)} *Hola*`
+            body: data.link
           };
         }).catch(function (error) {
           return { statusCode: 422, body: String(error) };
