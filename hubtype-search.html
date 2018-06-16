@@ -38,11 +38,11 @@
     $( ".search-button" ).click(function() {
         if ($(".search-box").val() !== ""){
             search($(".search-box").val(), function(err, data){
-                if(data !== null){
+                if(err){
                     console.log(err);
+                    alert('no results found');                    
+                } else {                    
                     window.location = data.link;
-                } else{
-                    alert('no results found');
                 }
             });
         }
