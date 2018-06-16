@@ -662,13 +662,14 @@
     exports.handler = (() => {
       var _ref = _asyncToGenerator(function* (event, context) {
         const queryString = event.queryStringParameters.q;
-        //API_ENDPOINT = API_ENDPOINT + queryString;
+        API_ENDPOINT = API_ENDPOINT + queryString;
         return (0, _nodeFetch2.default)(API_ENDPOINT).then(function (response) {
           return response.json();
         }).then(function (data) {
           return {
             statusCode: 200,
-            body: `${JSON.stringify(data)} *Hola*`
+            //body: `${JSON.stringify(data)} *Hola*`
+            body: API_ENDPOINT
           };
         }).catch(function (error) {
           return { statusCode: 422, body: String(error) };
