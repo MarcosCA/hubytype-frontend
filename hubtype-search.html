@@ -16,8 +16,7 @@
 </body>
 
 <script>
-
-    function search(queryString){
+    function search(queryString, callback){
         $.ajax({
         url: "https://jovial-yonath-d8166f.netlify.com/.netlify/functions/google_api",
         data: {
@@ -28,19 +27,22 @@
         crossDomain: true,
         error: function(err){
             console.log(err);
+            callback(err, null);
         },
         success: function(data) {
-            if(data !== ''){
-                window.location = data.link;
-            }
+            callback(false, data);
         }
     });
     }
 
     $( ".search-button" ).click(function() {
         if ($(".search-box").val() !== ""){
-            search($(".search-box").val(), function(err, response){
-
+            search($(".search-box").val(), function(err, data){
+            if(data !== ''){
+                window.location = data.link;
+            } else{
+                alert('no results found');
+            }
             });
         }
     });

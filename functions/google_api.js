@@ -668,7 +668,6 @@
           return {
             statusCode: 200,
             body: JSON.stringify(data)
-            //body: API_ENDPOINT
           };
         }).catch(function (error) {
           return { statusCode: 422, body: String(error) };
