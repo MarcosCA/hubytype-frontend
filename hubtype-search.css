@@ -1,0 +1,28 @@
+html {
+    background-color: black;
+}
+
+.container {
+    width: 600px;
+    margin: 0 auto;
+    min-height: 200px;
+    padding: 20px;
+}
+
+.search-box {
+    width: 500px;
+    height: 33px;
+    margin: 0 auto;
+    
+}
+
+.search-button {
+    margin: 0 auto;
+    border: 11px solid white;
+}
+
+img {
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}

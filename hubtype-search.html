@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/hubtype-search.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>HubType Search</title>
+</head>
+
+<body>
+    <div class="container">
+        <img src="https://hubtype.com/images/hubtype-white-small3x.png" alt="Hubtype">            
+        <input class="search-box" type="text" placeholder="Text to search"/>
+        <input class="search-button" type="button" value="Search"> 
+    </div>
+</body>
+
+<script>
+
+    function search(queryString){
+        $.ajax({
+        url: "https://hubtype-app.herokuapp.com/search",
+        data: {
+            q: queryString
+        },
+        async: false,
+        dataType: "json",
+        crossDomain: true,
+        error: function(err){
+            console.log(err);
+        },
+        success: function(data) {
+            if(data !== ''){
+                window.location = data.link;
+            }
+        }
+    });
+    }
+
+    $( ".search-button" ).click(function() {
+        if ($(".search-box").val() !== ""){
+            search($(".search-box").val(), function(err, response){
+
+            });
+        }
+    });
+</script>
+
+</html>
